@@ -1,6 +1,6 @@
 // this function will run once the form is submitted
 
-function main() {
+const main = () => {
   // responseLogger()
   lastResponse()
   // syncWithCalendar()
@@ -28,7 +28,7 @@ function main() {
 //   });
 //   Logger.log('Myself: %s', JSON.stringify(people, null, 2));
 // }
-function responseLogger() {
+const responseLogger = () =>  {
 
   // Open a form by ID and log the responses to each question.
   var form = FormApp.openById('121RGvMQ5WvRmP2P9kQwnnpuMpqsGKyk4ccqBWIilyaY');
@@ -48,23 +48,23 @@ function responseLogger() {
 
 }
 
-function lastResponse() {
+const lastResponse= () =>  {
   var formResponses = FormApp.getActiveForm().getResponses();
   Logger.log(formResponses.length);
   Logger.log(formResponses);
   console.log('HEREEE', formResponses)
-  // var formResponse = formResponses[formResponses.length-1];
-  // var itemResponses = formResponse.getItemResponses();
-  // for (var j = 0; j < itemResponses.length; j++) {
-  //   var itemResponse = itemResponses[j];
-  //   Logger.log('Last response to the question "%s" was "%s"',
-  //              itemResponse.getItem().getTitle(),
-  //              itemResponse.getResponse());
-  // }
+   var formResponse = formResponses[formResponses.length-1];
+  var itemResponses = formResponse.getItemResponses();
+   for (var j = 0; j < itemResponses.length; j++) {
+    var itemResponse = itemResponses[j];
+     Logger.log('Last response to the question "%s" was "%s"',
+               itemResponse.getItem().getTitle(),
+                itemResponse.getResponse());
+   }
 }
 
 
-function syncWithCalendar() {
+const syncWithCalendar = () =>  {
   /**
  * Creates an event in the user's default calendar.
  */
