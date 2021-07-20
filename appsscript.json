@@ -1,5 +1,8 @@
 {
   "timeZone": "Europe/Amsterdam",
+  "oauthScopes": [
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ],
   "dependencies": {
     "enabledAdvancedServices": [
       {
