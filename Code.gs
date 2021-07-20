@@ -1,5 +1,7 @@
 // this function will run once the form is submitted
 
+let user = {};
+
 const main = () => {
   // responseLogger()
   //lastResponse()
@@ -15,10 +17,17 @@ listConnectionNames()
  * Print the display name if available for 10 connections.
  */
 const listConnectionNames = () => {
-  var connections = People.People.get('people/me', {
-    personFields: 'names,emailAddresses'
+  var userProfile = People.People.get('people/me', {
+    personFields: 'names,emailAddresses,genders'
   });
-  console.log ('connections',connections);
+
+user.fullname = userProfile.names[0].displayName;
+user.firstName = userProfile.names[ 0].givenName;
+user.lastName = userProfile.names[0].familyName;
+user.email = userProfile.emailAddresses[0].value;
+
+ console.log('userProfile:',userProfile, 'first name:', user.firstName,'| last name:',user.lastName ,'| full name:',user.fullname, '| email:', user.email
+                );
 }
 
 
@@ -38,7 +47,6 @@ const responseLogger = () =>  {
   // Open a form by ID and log the responses to each question.
   let form = FormApp.openById('121RGvMQ5WvRmP2P9kQwnnpuMpqsGKyk4ccqBWIilyaY');
   let formResponses = form.getResponses();
-  console.log('FORM RESPONSES', formResponses)
   formResponses.map (formResponse => {
     const itemResponses = formResponse.getItemResponses()
     itemResponses.map (itemResponse => Logger.log('Last response to the question "%s" was "%s"',
