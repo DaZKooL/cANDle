@@ -2,7 +2,9 @@
   "timeZone": "Europe/Amsterdam",
   "oauthScopes": [
       "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email"
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/profile.language.read",
+      "https://www.googleapis.com/auth/user.gender.read"
     ],
   "dependencies": {
     "enabledAdvancedServices": [

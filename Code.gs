@@ -1,13 +1,14 @@
 // this function will run once the form is submitted
 
-let user = {};
+const user = {};
 
 const main = () => {
   // responseLogger()
   //lastResponse()
   // syncWithCalendar()
   // sendEmails()
-listConnectionNames()
+  const userProfile = getUserProfile();
+   console.log('userProfile:', 'first name:', user.firstName,'| last name:',user.lastName ,'| full name:',user.fullname, '| email:', user.email);
 }
 
 // /**
@@ -16,7 +17,7 @@ listConnectionNames()
 /**
  * Print the display name if available for 10 connections.
  */
-const listConnectionNames = () => {
+const getUserProfile = () => {
   var userProfile = People.People.get('people/me', {
     personFields: 'names,emailAddresses,genders'
   });
@@ -25,9 +26,8 @@ user.fullname = userProfile.names[0].displayName;
 user.firstName = userProfile.names[ 0].givenName;
 user.lastName = userProfile.names[0].familyName;
 user.email = userProfile.emailAddresses[0].value;
-
- console.log('userProfile:',userProfile, 'first name:', user.firstName,'| last name:',user.lastName ,'| full name:',user.fullname, '| email:', user.email
-                );
+                
+                return user;
 }
 
 
