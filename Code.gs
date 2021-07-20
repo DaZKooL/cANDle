@@ -1,8 +1,8 @@
 // this function will run once the form is submitted
 
 const main = () => {
-  // responseLogger()
-  lastResponse()
+   responseLogger()
+  //lastResponse()
   // syncWithCalendar()
   // sendEmails()
 
@@ -28,24 +28,20 @@ const main = () => {
 //   });
 //   Logger.log('Myself: %s', JSON.stringify(people, null, 2));
 // }
+
 const responseLogger = () =>  {
 
   // Open a form by ID and log the responses to each question.
-  var form = FormApp.openById('121RGvMQ5WvRmP2P9kQwnnpuMpqsGKyk4ccqBWIilyaY');
-  var formResponses = form.getResponses();
+  let form = FormApp.openById('121RGvMQ5WvRmP2P9kQwnnpuMpqsGKyk4ccqBWIilyaY');
+  let formResponses = form.getResponses();
   console.log('FORM RESPONSES', formResponses)
-  for (var i = 0; i < formResponses.length; i++) {
-    var formResponse = formResponses[i];
-    var itemResponses = formResponse.getItemResponses();
-    for (var j = 0; j < itemResponses.length; j++) {
-      var itemResponse = itemResponses[j];
-      Logger.log('Response #%s to the question "%s" was "%s"',
-          (i + 1).toString(),
-          itemResponse.getItem().getTitle(),
-          itemResponse.getResponse());
-    }
-  }
-
+  formResponses.map (formResponse => {
+    const itemResponses = formResponse.getItemResponses()
+    itemResponses.map (itemResponse => Logger.log('Last response to the question "%s" was "%s"',
+               itemResponse.getItem().getTitle(),
+                itemResponse.getResponse()));
+   
+  })
 }
 
 const lastResponse= () =>  {
