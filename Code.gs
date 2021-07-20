@@ -1,22 +1,26 @@
 // this function will run once the form is submitted
 
 const main = () => {
-   responseLogger()
+  // responseLogger()
   //lastResponse()
   // syncWithCalendar()
   // sendEmails()
-
+listConnectionNames()
 }
 
 // /**
 //  * Gets a list of people in the user's contacts.
 //  */
-// function getConnections() {
-//   var people = People.People.Connections.list('people/me', {
-//     personFields: 'names,emailAddresses'
-//   });
-//   Logger.log('Connections: %s', JSON.stringify(people, null, 2));
-// }
+/**
+ * Print the display name if available for 10 connections.
+ */
+const listConnectionNames = () => {
+  var connections = People.People.get('people/me', {
+    personFields: 'names,emailAddresses'
+  });
+  console.log ('connections',connections);
+}
+
 
 // /**
 //  * Gets the own user's profile.
@@ -49,7 +53,7 @@ const lastResponse= () =>  {
   Logger.log(formResponses.length);
   Logger.log(formResponses);
   console.log('HEREEE', formResponses)
-   var formResponse = formResponses[formResponses.length-1];
+  var formResponse = formResponses[formResponses.length-1];
   var itemResponses = formResponse.getItemResponses();
    for (var j = 0; j < itemResponses.length; j++) {
     var itemResponse = itemResponses[j];
