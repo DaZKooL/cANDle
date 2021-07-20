@@ -12,14 +12,11 @@ const main = () => {
 }
 
 // /**
-//  * Gets a list of people in the user's contacts.
+//  * Gets user information
 //  */
-/**
- * Print the display name if available for 10 connections.
- */
 const getUserProfile = () => {
   var userProfile = People.People.get('people/me', {
-    personFields: 'names,emailAddresses,genders'
+    personFields: 'names,emailAddresses'
   });
 
 user.fullname = userProfile.names[0].displayName;
@@ -30,17 +27,6 @@ user.email = userProfile.emailAddresses[0].value;
                 return user;
 }
 
-
-// /**
-//  * Gets the own user's profile.
-//  */
-// function getSelf() {
-//   var people = People.People.getBatchGet({
-//     resourceNames: ['people/me'],
-//     personFields: 'names,emailAddresses'
-//   });
-//   Logger.log('Myself: %s', JSON.stringify(people, null, 2));
-// }
 
 const responseLogger = () =>  {
 
