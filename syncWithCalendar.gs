@@ -1,11 +1,11 @@
-const calendarId = 'c_1q3lqus52bup2vb9jcvo27qn4k@group.calendar.google.com'
+// const calendarId = 'c_1q3lqus52bup2vb9jcvo27qn4k@group.calendar.google.com'
 
 function syncWithCalendar(eventDetails, email, fullName) {
   // const title = `${fullName}'s birthday`
   const title = `${email}'s birthday`
-  console.log('EVENT Birthday Check LongForm', eventDetails['What is your date of birth?'])
+  // console.log('EVENT Birthday Check LongForm', eventDetails['What is your date of birth?'])
+  console.log('EVENT details', eventDetails)
   const calendar = CalendarApp.getCalendarById(calendarId);
-  // console.log('calendar', calendar)
 
   const birthdayDate = eventDetails.Birthday || eventDetails['What is your date of birth?']
   console.log('birthdayDate', birthdayDate)
@@ -17,8 +17,12 @@ function syncWithCalendar(eventDetails, email, fullName) {
 
   // delete old events
   if (allEvents.length) {
-    allEvents.map(event => event.getEventSeries().deleteEventSeries())
-    // console.log('DELETE triggered', allEvents)
+    console.log('DELETE triggered')
+    try {
+      allEvents.map(event => event.getEventSeries().deleteEventSeries())
+    } catch (e) {
+      console.error('Woopsie, something went wrong deleting old events', e)
+    }
   }
   
   // Create new birthday event
