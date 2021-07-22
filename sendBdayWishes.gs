@@ -105,6 +105,7 @@ function sendBdayWishes() {
 
   const htmlBody =     UrlFetchApp.fetch(url,param).getContentText();
   
+  // console.log(htmlBody);
   // delete temp copy
   let trashed = DriveApp.getFileById(docId).setTrashed(true);
   // // send to myself to test
