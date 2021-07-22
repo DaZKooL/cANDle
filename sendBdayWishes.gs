@@ -22,13 +22,24 @@ function sendBdayWishes() {
       let name = sheet.getRange(i,19).getValue();
       let consent = sheet.getRange(i,15).getValue();
       let gifCategory = sheet.getRange(i,20).getValue();
-  
+      let lineManager = sheet.getRange(i, 21).getValue();
   
       if(!wantBirthdayCard(consent)){
         Logger.log(name+"/"+email+" does not want birthday card");
         continue;
       }
   
+    var today = new Date();
+    today = today.setDate(today.getDate());
+      var targetDate = new Date();
+      targetDate = (targetDate.setDate (birthday.getDate()-7));
+      console.log (today == targetDate, today,'  ----   ' +targetDate+' ----   '+birthday );
+      if (today == targetDate ){
+        console.log ('email!!!!!!!!!!!!!!')
+        SendEmail(lineManager, "It's " + name + "'s birthday!", "Hey, It is " + name + "'s birthday today! Lets make some plans.");
+      
+      }
+
       // Check if the person’s birthday is today
       if(isBirthdayToday(birthday)) {
         //If yes, send an email reminder
@@ -109,7 +120,20 @@ function sendBdayWishes() {
   // delete temp copy
   let trashed = DriveApp.getFileById(docId).setTrashed(true);
   // // send to myself to test
-  MailApp.sendEmail(email,'Happy Birthday '+name,' ' ,{htmlBody : htmlBody});
+  // SendEmail(email, `Happy Birthday ${name}`, {htmlBody : htmlBody});
+  SendEmail(email, `Happy Birthday ${name}`, htmlBody);
+}
+
+function SendEmail(recipient, subject, body) {
+  //console.log('Woop', body)
+  // MailApp.sendEmail(recipient, subject, body);
+  console.log (recipient,'recipient')
+  MailApp.sendEmail(recipient, subject, body);
+}
+
+function NotifyLineManager()
+{
+  
 }
 
 
